@@ -34,12 +34,26 @@ document.addEventListener('DOMContentLoaded', async () => {
         return;
     }
 
-    // Carregar informações do quadro
-    const savedBoards = JSON.parse(localStorage.getItem('boards')) || [];
-    const board = savedBoards.find(b => b.id === boardId);
+    // Carregar informações do quadro da API
+    let board;
+    try {
+        const response = await fetch(getApiUrl(API_CONFIG.ENDPOINTS.BOARD_BY_ID(boardId)), {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        });
 
-    if (!board) {
-        window.showErrorModal('Quadro não encontrado');
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.mensagem || 'Erro ao buscar quadro da API.');
+        }
+
+        board = await response.json();
+    } catch (error) {
+        console.error('Erro ao carregar quadro:', error);
+        window.showErrorModal('Quadro não encontrado: ' + error.message);
         return;
     }
 

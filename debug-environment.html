@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Debug Environment</title>
 </head>
+
 <body>
     <h1>Debug da Configuração de Ambiente</h1>
     <div id="debug-info"></div>
@@ -15,57 +17,58 @@
     <script src="./src/js/config/environment.js"></script>
     <script>
         // Força a configuração correta do ambiente
-        (function() {
+        (function () {
             const hostname = window.location.hostname;
             let apiUrl = 'http://localhost:5000';
-            
+
             if (hostname !== 'localhost' && hostname !== '127.0.0.1') {
                 apiUrl = 'https://webagunca.onrender.com';
             }
-            
+
             if (window.API_CONFIG) {
                 window.API_CONFIG.BASE_URL = apiUrl;
             }
-            
+
             console.log(`Hostname: ${hostname}`);
             console.log(`API forçada para: ${apiUrl}`);
         })();
     </script>
     <script></script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const debugInfo = document.getElementById('debug-info');
-            const testButton = document.getElementById('test-api');
-            const apiResult = document.getElementById('api-result');
-            
-            setTimeout(() => {
-                const info = `
-                    <p><strong>Hostname:</strong> ${window.location.hostname}</p>
-                    <p><strong>Ambiente detectado:</strong> ${detectEnvironment()}</p>
-                    <p><strong>API Base URL:</strong> ${API_CONFIG.BASE_URL}</p>
-                    <p><strong>URL de Login:</strong> ${getApiUrl(API_CONFIG.ENDPOINTS.LOGIN)}</p>
-                `;
-                debugInfo.innerHTML = info;
-            }, 100);
+    document.addEventListener('DOMContentLoaded', function() {
+    const debugInfo = document.getElementById('debug-info');
+    const testButton = document.getElementById('test-api');
+    const apiResult = document.getElementById('api-result');
 
-            testButton.addEventListener('click', async function() {
-                try {
-                    apiResult.innerHTML = '<p>Testando conexão com a API...</p>';
-                    
-                    // Testa a rota raiz da API
-                    const response = await fetch(API_CONFIG.BASE_URL);
-                    const data = await response.json();
-                    
-                    apiResult.innerHTML = `
-                        <p><strong>Status:</strong> ${response.status}</p>
-                        <p><strong>Resposta:</strong> ${JSON.stringify(data, null, 2)}</p>
-                    `;
-                } catch (error) {
-                    apiResult.innerHTML = `
-                        <p><strong>Erro:</strong> ${error.message}</p>
-                    `;
-                }
-            });
-        });
+    setTimeout(() => {
+    const info = `
+    <p><strong>Hostname:</strong> ${window.location.hostname}</p>
+    <p><strong>Ambiente detectado:</strong> ${detectEnvironment()}</p>
+    <p><strong>API Base URL:</strong> ${API_CONFIG.BASE_URL}</p>
+    <p><strong>URL de Login:</strong> ${getApiUrl(API_CONFIG.ENDPOINTS.LOGIN)}</p>
+    `;
+    debugInfo.innerHTML = info;
+    }, 100);
+
+    testButton.addEventListener('click', async function() {
+    try {
+    apiResult.innerHTML = '<p>Testando conexão com a API...</p>';
+
+    // Testa a rota raiz da API
+    const response = await fetch(API_CONFIG.BASE_URL);
+    const data = await response.json();
+
+    apiResult.innerHTML = `
+    <p><strong>Status:</strong> ${response.status}</p>
+    <p><strong>Resposta:</strong> ${JSON.stringify(data, null, 2)}</p>
+    `;
+    } catch (error) {
+    apiResult.innerHTML = `
+    <p><strong>Erro:</strong> ${error.message}</p>
+    `;
+    }
+    });
+    });
     </script>
 </body>
+
 </html>
