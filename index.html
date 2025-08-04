@@ -631,6 +631,26 @@
   <script src="./src/js/ui/particles.js"></script>
   <script src="./src/js/config/api.js"></script>
   <script src="./src/js/config/environment.js"></script>
+  <script>
+    // Força a configuração correta do ambiente
+    (function() {
+        const hostname = window.location.hostname;
+        let apiUrl = 'http://localhost:5000';
+        
+        // Se não estiver em localhost, usa a URL de produção
+        if (hostname !== 'localhost' && hostname !== '127.0.0.1') {
+            apiUrl = 'https://webagunca.onrender.com';
+        }
+        
+        // Atualiza a configuração da API
+        if (window.API_CONFIG) {
+            window.API_CONFIG.BASE_URL = apiUrl;
+        }
+        
+        console.log(`Hostname: ${hostname}`);
+        console.log(`API configurada para: ${apiUrl}`);
+    })();
+  </script>
   <script src="./src/js/features/auth/auth.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {

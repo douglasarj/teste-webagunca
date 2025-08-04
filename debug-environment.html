@@ -14,6 +14,24 @@
     <script src="./src/js/config/api.js"></script>
     <script src="./src/js/config/environment.js"></script>
     <script>
+        // Força a configuração correta do ambiente
+        (function() {
+            const hostname = window.location.hostname;
+            let apiUrl = 'http://localhost:5000';
+            
+            if (hostname !== 'localhost' && hostname !== '127.0.0.1') {
+                apiUrl = 'https://webagunca.onrender.com';
+            }
+            
+            if (window.API_CONFIG) {
+                window.API_CONFIG.BASE_URL = apiUrl;
+            }
+            
+            console.log(`Hostname: ${hostname}`);
+            console.log(`API forçada para: ${apiUrl}`);
+        })();
+    </script>
+    <script></script>
         document.addEventListener('DOMContentLoaded', function() {
             const debugInfo = document.getElementById('debug-info');
             const testButton = document.getElementById('test-api');

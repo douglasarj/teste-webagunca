@@ -7,6 +7,21 @@
     <title>Teste da API - Bagunça</title>
     <script src="./src/js/config/api.js"></script>
     <script src="./src/js/config/environment.js"></script>
+    <script>
+        // Força a configuração correta do ambiente
+        (function() {
+            const hostname = window.location.hostname;
+            let apiUrl = 'http://localhost:5000';
+            
+            if (hostname !== 'localhost' && hostname !== '127.0.0.1') {
+                apiUrl = 'https://webagunca.onrender.com';
+            }
+            
+            if (window.API_CONFIG) {
+                window.API_CONFIG.BASE_URL = apiUrl;
+            }
+        })();
+    </script>
     <script src="./src/js/utils/apiTest.js"></script>
     <style>
         body {

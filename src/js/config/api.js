@@ -1,7 +1,7 @@
 // Configuração da API
 const API_CONFIG = {
-    // URL base da API - altere esta URL quando fizer deploy do backend
-    BASE_URL: 'http://localhost:5000',
+    // URL base da API - será configurada automaticamente pelo environment.js
+    BASE_URL: 'http://localhost:5000', // valor padrão, será sobrescrito
     
     // Endpoints da API
     ENDPOINTS: {
