@@ -1,0 +1,221 @@
+/* Tema Escuro (Padrão) */
+:root[data-theme="dark"] {
+    --bg-primary: #111827;
+    --bg-secondary: #1F2937;
+    --bg-tertiary: #374151;
+    --text-primary: #FFFFFF;
+    --text-secondary: #9CA3AF;
+    --accent: #3B82F6;
+    --accent-hover: #2563EB;
+    --border: #374151;
+}
+
+/* Tema Claro */
+:root[data-theme="light"] {
+    --bg-primary: #F3F4F6;
+    --bg-secondary: #FFFFFF;
+    --bg-tertiary: #E5E7EB;
+    --text-primary: #111827;
+    --text-secondary: #4B5563;
+    --accent: #3B82F6;
+    --accent-hover: #2563EB;
+    --border: #D1D5DB;
+}
+
+/* Tema Colorido */
+:root[data-theme="colorful"] {
+    --bg-primary: #1A1C2C;
+    --bg-secondary: #2D1B69;
+    --bg-tertiary: #4C1D95;
+    --text-primary: #FFFFFF;
+    --text-secondary: #E9D5FF;
+    --accent: #8B5CF6;
+    --accent-hover: #7C3AED;
+    --border: #6D28D9;
+}
+
+/* Tema Escuro de Alto Contraste (Novo) */
+:root[data-theme="high-contrast-dark"] {
+    --bg-primary: #000000;
+    --bg-secondary: #000000;
+    --bg-tertiary: #111111;
+    --text-primary: #FFFFFF;
+    --text-secondary: #CCCCCC;
+    --accent: #FFFF00;
+    --accent-hover: #EBEB00;
+    --border: #FFFFFF;
+}
+
+/* Tema Claro de Alto Contraste (Novo) */
+:root[data-theme="high-contrast-light"] {
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #F0F0F0;
+    --bg-tertiary: #E0E0E0;
+    --text-primary: #000000;
+    --text-secondary: #333333;
+    --accent: #0000FF;
+    --accent-hover: #0000CC;
+    --border: #000000;
+}
+
+/* Aplicação dos temas */
+body {
+    background-color: var(--bg-primary) !important;
+    color: var(--text-primary) !important;
+}
+
+.bg-gray-900 {
+    background-color: var(--bg-primary) !important;
+}
+
+.bg-gray-800 {
+    background-color: var(--bg-secondary) !important;
+}
+
+.bg-gray-700 {
+    background-color: var(--bg-tertiary) !important;
+}
+
+.text-white {
+    color: var(--text-primary) !important;
+}
+
+.text-gray-400 {
+    color: var(--text-secondary) !important;
+}
+
+.border-gray-700 {
+    border-color: var(--border) !important;
+}
+
+.bg-blue-500, .bg-blue-600 {
+    background-color: var(--accent) !important;
+}
+
+.hover\:bg-blue-600:hover {
+    background-color: var(--accent-hover) !important;
+}
+
+.hover\:bg-gray-700:hover {
+    background-color: var(--bg-tertiary) !important;
+}
+
+input, select, textarea {
+    background-color: var(--bg-tertiary) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border) !important;
+}
+
+.dropdown-content {
+    background-color: var(--bg-secondary) !important;
+}
+
+.dropdown-content a {
+    color: var(--text-primary) !important;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--bg-tertiary) !important;
+}
+
+/* Ajustes específicos para elementos comuns */
+.sidebar {
+    background-color: var(--bg-secondary) !important;
+}
+
+.board {
+    background-color: var(--bg-secondary) !important;
+    border-color: var(--border) !important;
+}
+
+.board:hover {
+    border-color: var(--accent) !important;
+}
+
+/* Ajustes para inputs e botões */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"] {
+    background-color: var(--bg-tertiary) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border) !important;
+}
+
+button:not(.theme-button):not(.color-option) {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border) !important;
+}
+
+button:hover:not(.theme-button):not(.color-option) {
+    background-color: var(--bg-tertiary) !important;
+}
+
+/* Estilos específicos para botões de tema */
+.theme-button {
+    transition: all 0.2s ease-in-out;
+    position: relative;
+    /* Adicionando cor de fundo para garantir que não seja sobrescrita */
+    background-color: #374151 !important;
+}
+
+/* Corrigindo a cor de fundo dos botões de tema */
+.theme-button[data-theme="light"] {
+    background-color: #FFFFFF !important;
+}
+
+.theme-button[data-theme="colorful"] {
+    background-image: linear-gradient(to right, #8B5CF6, #EC4899) !important;
+}
+
+.theme-button[data-theme="high-contrast-dark"] {
+    background-color: #000000 !important;
+}
+
+.theme-button[data-theme="high-contrast-light"] {
+    background-color: #FFFFFF !important;
+}
+
+
+.theme-button:hover {
+    transform: scale(1.05);
+}
+
+/* Garantir visibilidade das bordas dos botões de tema */
+:root[data-theme="light"] .theme-button[data-theme="dark"] {
+    border-color: #4B5563 !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+:root[data-theme="dark"] .theme-button[data-theme="light"] {
+    border-color: #D1D5DB !important;
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+}
+
+:root[data-theme="colorful"] .theme-button[data-theme="dark"] {
+    border-color: #6B7280 !important;
+}
+
+:root[data-theme="colorful"] .theme-button[data-theme="light"] {
+    border-color: #E5E7EB !important;
+}
+
+/* Ajuste para botões de tema de alto contraste */
+:root[data-theme="high-contrast-dark"] .theme-button[data-theme="light"],
+:root[data-theme="high-contrast-dark"] .theme-button[data-theme="colorful"] {
+    border-color: #111111 !important;
+}
+
+:root[data-theme="high-contrast-light"] .theme-button[data-theme="dark"],
+:root[data-theme="high-contrast-light"] .theme-button[data-theme="colorful"] {
+    border-color: #D1D5DB !important;
+}
+
+/* Acessibilidade - Aumento da fonte */
+.font-size-lg {
+    font-size: 1.25rem !important;
+}
+.font-size-xl {
+    font-size: 1.5rem !important;
+}
