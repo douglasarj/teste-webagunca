@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,12 +17,14 @@
             background-color: #1a1a1a;
             color: white;
         }
+
         .container {
             background-color: #2a2a2a;
             padding: 20px;
             border-radius: 10px;
             margin: 20px 0;
         }
+
         button {
             background-color: #4CAF50;
             color: white;
@@ -31,9 +34,11 @@
             cursor: pointer;
             margin: 5px;
         }
+
         button:hover {
             background-color: #45a049;
         }
+
         #results {
             background-color: #1a1a1a;
             padding: 15px;
@@ -44,19 +49,30 @@
             max-height: 400px;
             overflow-y: auto;
         }
+
         .status {
             padding: 10px;
             border-radius: 5px;
             margin: 10px 0;
         }
-        .success { background-color: #4CAF50; }
-        .error { background-color: #f44336; }
-        .info { background-color: #2196F3; }
+
+        .success {
+            background-color: #4CAF50;
+        }
+
+        .error {
+            background-color: #f44336;
+        }
+
+        .info {
+            background-color: #2196F3;
+        }
     </style>
 </head>
+
 <body>
     <h1>🧪 Teste da API - Projeto Bagunça</h1>
-    
+
     <div class="container">
         <h2>Configuração Atual</h2>
         <div id="config-info"></div>
@@ -79,8 +95,8 @@
         // Interceptar console.log para mostrar na página
         const originalLog = console.log;
         const resultsDiv = document.getElementById('results');
-        
-        console.log = function(...args) {
+
+        console.log = function (...args) {
             originalLog.apply(console, args);
             const message = args.join(' ');
             resultsDiv.textContent += message + '\n';
@@ -92,11 +108,11 @@
         }
 
         // Mostrar configuração inicial
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const configDiv = document.getElementById('config-info');
             const env = window.detectEnvironment ? window.detectEnvironment() : 'Não detectado';
             const apiUrl = API_CONFIG ? API_CONFIG.BASE_URL : 'Não configurado';
-            
+
             configDiv.innerHTML = `
                 <div class="status info">
                     <strong>Ambiente:</strong> ${env}<br>
@@ -108,4 +124,5 @@
         });
     </script>
 </body>
+
 </html>

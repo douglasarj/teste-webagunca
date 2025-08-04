@@ -634,7 +634,8 @@
   <script src="./src/js/features/auth/auth.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const API_URL = 'http://localhost:5000/api';
+        // Usa a configuração de ambiente em vez de URL hardcoded
+        const API_URL = `${API_CONFIG.BASE_URL}/api`;
 
         const mobileMenuButton = document.getElementById('mobileMenuButton');
         const mobileMenu = document.getElementById('mobileMenu');

@@ -19,6 +19,10 @@ function detectEnvironment() {
     }
     
     // Se estiver no GitHub Pages ou outro domínio de produção
+    if (hostname.includes('github.io') || hostname.includes('pages.dev') || hostname !== 'localhost') {
+        return 'production';
+    }
+    
     return 'production';
 }
 

@@ -15,7 +15,22 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
-app.use(cors({}));
+// Configuração de CORS mais específica
+const corsOptions = {
+  origin: [
+    'http://localhost:3000',
+    'http://localhost:5000',
+    'http://127.0.0.1:3000',
+    'http://127.0.0.1:5000',
+    'https://douglasramos.github.io',
+    /\.github\.io$/,
+    /\.pages\.dev$/
+  ],
+  credentials: true,
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 
 // Conexão com o MongoDB Atlas
 mongoose.connect(process.env.MONGODB_URI, {
